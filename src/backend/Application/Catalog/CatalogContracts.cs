@@ -22,5 +22,9 @@ namespace MediaCatalog.Backend.Application.Catalog
     {
         public IReadOnlyCollection<MediaItemResponse> Items { get; set; }
         public IReadOnlyCollection<string> Genres { get; set; }
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+        public int TotalItems { get; set; }
+        public int TotalPages { get; set; }
     }
 }

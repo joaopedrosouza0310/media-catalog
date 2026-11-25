@@ -16,13 +16,20 @@ namespace MediaCatalog.Backend.Application.Catalog
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public async Task<MediaListResponse> ListAsync(CancellationToken cancellationToken)
+        public async Task<MediaListResponse> ListAsync(int page, int pageSize, CancellationToken cancellationToken)
         {
             var media = await _repository.ListAsync(cancellationToken);
+            page = Math.Max(1, page);
+            pageSize = Math.Max(1, Math.Min(100, pageSize));
+            var totalItems = media.Count;
             return new MediaListResponse
             {
-                Items = media.Select(Map).ToArray(),
-                Genres = media.Select(item => item.Genre).Distinct().OrderBy(genre => genre).ToArray()
+                Items = media.Skip((page - 1) * pageSize).Take(pageSize).Select(Map).ToArray(),
+                Genres = media.Select(item => item.Genre).Distinct().OrderBy(genre => genre).ToArray(),
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
             };
         }
 

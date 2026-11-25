@@ -6,7 +6,7 @@ namespace MediaCatalog.Backend.Application.Catalog
 {
     public interface IMediaCatalogApplicationService
     {
-        Task<MediaListResponse> ListAsync(CancellationToken cancellationToken);
+        Task<MediaListResponse> ListAsync(int page, int pageSize, CancellationToken cancellationToken);
         Task<MediaItemResponse> FindAsync(Guid mediaId, CancellationToken cancellationToken);
     }
 }
