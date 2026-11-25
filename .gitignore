@@ -1,0 +1,33 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+[Bb]in/
+[Oo]bj/
+packages/
+TestResults/
+
+# Flutter and Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+coverage/
+src/mobile/android/local.properties
+src/mobile/ios/Flutter/ephemeral/
+
+# Secrets and local configuration
+*.secrets.json
+*.local.json
+.env
+.env.*
+!.env.example
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
